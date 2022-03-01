@@ -58,6 +58,16 @@ export default [
     description: 'Click here to learn how to create your own type.',
     goTo: 'http://kitware.github.io/simput/docs/vcard.html'
   },
+  {
+    label: 'zCFD Visualiser',
+    image: Images.zCFD,
+    description: 'Application to view geometry and intuitively apply initial/boundary conditions.',
+    acknowledgement: 'Zenotech',
+    model: {
+      type: 'zcfd',
+      data: {},
+    },
+  },
   // {
   //   label: 'Demo',
   //   icon: 'bug_report',

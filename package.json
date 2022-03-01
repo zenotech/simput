@@ -43,6 +43,7 @@
     "type:vcard": "node ./src/cli/simput-cli.js -c ./types/vcard/src -o ./static/types -t vcard",
     "type:vera": "node ./src/cli/simput-cli.js -c ./types/vera/src -o ./static/types -t vera",
     "type:conus": "node ./src/cli/simput-cli.js -c ./types/parflow-conus/src -o ./static/types -t parflow-conus",
+    "type:zcfd": "node ./src/cli/simput-cli.js -c ./types/zcfd/src -o ./static/types -t zcfd",
     "prepublishOnly": "npm run version && npm run bundle"
   },
   "author": "Kitware",
