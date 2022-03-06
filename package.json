@@ -2,6 +2,7 @@
   "name": "simput",
   "description": "Provide a simple way to write input simulation files.",
   "version": "0.0.0-semantically-release",
+  "type": "module",
   "keywords": [
     "forms",
     "input",
