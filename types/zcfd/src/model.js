@@ -1,5 +1,5 @@
 module.exports = {
-  order: ['run', 'timemarcher', 'analyses'],
+  order: ['timemarcher', 'solverscheme'],
   views: {
     timemarcher: {
       size: -1,
@@ -10,40 +10,23 @@ module.exports = {
           attribute: 'timemarch.name',
         },
         {
-          type: 'timemarchsToExternal',
+          type: 'timemarchToExternal',
         },
       ],
     },
-    analyses: {
+    solverscheme: {
       size: -1,
-      attributes: ['analysis'],
+      attributes: ['solver'],
       hooks: [
         {
           type: 'copyParameterToViewName',
-          attribute: 'analysis.name',
+          attribute: 'solver.name',
+        },
+        {
+          type: 'solverToExternal',
         },
       ],
-    },
-    run: {
-      attributes: ['runParams'],
-      hooks: [
-        {
-          type: 'copyToExternal',
-          src: 'data.run.0.runParams.gridsize.value.0',
-          dst: 'viz.gridsize',
-        },
-        {
-          type: 'copyToExternal',
-          src: 'data.run.0.runParams.dt.value.0',
-          dst: 'viz.timeStep',
-        },
-        {
-          type: 'copyToExternal',
-          src: 'data.run.0.runParams.endT.value.0',
-          dst: 'viz.endTime',
-        },
-      ],
-    },
+    },   
   },
   definitions: {
     timemarch: {
@@ -91,15 +74,16 @@ module.exports = {
           id: 'psuedocycles',
           type: 'int',
           size: 1,
+          default: [1],
           show: "type[0] === 'dueltime'",
         },
       ],
     },
-    analysis: {
+    solver: {
       parameters: [
         {
-          id: 'name',
-          label: 'Name',
+          id: 'solvername',
+          label: 'Solver Name',
           type: 'string',
           size: 1,
         },
@@ -107,110 +91,103 @@ module.exports = {
           id: 'type',
           type: 'enum',
           size: 1,
-          default: 'histogram',
+          default: 'euler',
           domain: {
-            Histogram: 'histogram',
-            Autocorrelation: 'autocorrelation',
+            Euler: 'euler',
+            RK: 'rk',
+            LU_SGS: 'lu_sgs',
           },
         },
-        ["histogram", "autocorrelation"],
-      ],
-      children: {
-        histogram: "analysis.type[0] === 'histogram'",
-        autocorrelation: "analysis.type[0] === 'autocorrelation'",
-      },
-    },
-    histogram: {
-       parameters: [
-          {
-              id: 'mesh',
-              type: 'enum',
-              size: 1,
-              default: 'mesh',
-              domain: {
-                Mesh: 'mesh',
-                'Unstructured mesh': 'ucdmesh',
-                'Particle velocity magnitude': 'particles',
-              },
-          },
-          {
-            id: 'bins',
-            type: 'int',
-            size: 1,
-            default: [10],
-          },
-       ],
-    },
-    autocorrelation: {
-       parameters: [
-          {
-              id: 'mesh',
-              type: 'enum',
-              size: 1,
-              default: 'mesh',
-              domain: {
-                // currently only works on one type.
-                Mesh: 'mesh',
-              },
-          },
-          {
-            id: 'window',
-            type: 'double',
-            size: 1,
-            default: [10],
-          },
-          {
-            id: 'kmax',
-            type: 'double',
-            size: 1,
-            default: [3],
-          },
-       ],
-    },
-    runParams: {
-      parameters: [
         {
-          id: 'nodes',
+          id: 'rk_stages',
+          type: 'enum',
+          size: 1,
+          show: "type[0] === 'rk'",
+          default: 'one',
+          domain: {
+            One: 'one',
+            Four: 'four',
+            Five: 'five',
+            RK_Third: 'rk_third',
+          }
+        },
+        {
+          id: 'time_scheme',
+          type: 'enum',
+          size: 1,
+          show: "type[0] === 'rk'",
+          default: 'local',
+          domain: {
+            Local: 'local',
+            Dual: 'dual',
+          }
+        },   
+        {
+          id: 'sgs_cycles',
           type: 'int',
           size: 1,
+          show: "type[0] === 'lu_sgs'",          
+          default: [8],
+        },
+        {
+          id: 'jacobian_update_freq',
+          type: 'int',
+          size: 1,
+          show: "type[0] === 'lu_sgs'",          
           default: [1],
         },
         {
-          id: 'gridsize',
-          type: 'int',
+          id: 'backward_sweep',
+          type: 'enum',
           size: 1,
-          default: [64],
-        },
-        {
-          id: 'dt',
-          type: 'double',
-          size: 1,
-          default: [0.1],
-        },
-        {
-          id: 'endT',
-          type: 'double',
-          size: 1,
-          default: [10],
-        },
-      ],
-    },
-    timemarchView: {
-      parameters: [
-        {
-          id: 'viz',
-          propType: 'ViewerWidget',
-          size: 1,
-          default: {
-            text: '',
-          },
+          show: "type[0] === 'lu_sgs'",
+          default: 'true',
           domain: {
-            dynamic: true,
-            external: 'viz',
-          },
-          label: 'Gaussians',
+            True: 'true',
+            False: 'false',
+          }
+        }, 
+        {
+          id: 'relaxation',
+          type: 'enum',
+          size: 1,
+          show: "type[0] === 'lu_sgs'",
+          default: 'true',
+          domain: {
+            True: 'true',
+            False: 'false',
+          }
         },
+        {
+          id: 'jacobian_epsilon',
+          type: 'double',
+          size: 1,
+          show: "type[0] === 'lu_sgs'",          
+          default: [1e-8],
+        },        
+        {
+          id: 'rasanov',
+          type: 'enum',
+          size: 1,
+          show: "type[0] === 'lu_sgs'",
+          default: 'true',
+          domain: {
+            True: 'true',
+            False: 'false',
+          }
+        },
+        {
+          id: 'finite_difference',
+          type: 'enum',
+          size: 1,
+          show: "type[0] === 'lu_sgs'",
+          default: 'false',
+          domain: {
+            True: 'true',
+            False: 'false',
+          }
+        },                                             
       ],
-    },
+    },    
   },
 };

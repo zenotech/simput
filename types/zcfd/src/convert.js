@@ -1,9 +1,7 @@
-const outputTemplate = require('./oscillator_list.hbs');
-const configTemplate = require('./analysis_config.hbs');
-const runTemplate = require('./run_script.hbs');
+const outputTemplate = require('./timemarch_list.hbs');
 
 /*
-# type      center          r       omega0      zeta
+# type      totaltime          timestep       accuracy      pseudocycles
 */
 
 const COLUMN_SPACING = 5;
@@ -11,24 +9,24 @@ const COLUMN_SPACING = 5;
 module.exports = function convert(dataModel) {
   const results = {};
   // Start with a standard header
-  const lines = [['# type  ', 'center  ', 'r  ', 'omega0  ', 'zeta']];
+  const lines = [['# type  ', 'totaltime  ', 'timestep  ', 'accuracy  ', 'pseudocycles']];
 
-  dataModel.data.oscillators.forEach((attributes) => {
-    const oscillator = {};
-    Object.keys(attributes.oscillator).forEach((fieldName) => {
-      const value = attributes.oscillator[fieldName].value;
+  dataModel.data.timemarcher.forEach((attributes) => {
+    const timemarch = {};
+    Object.keys(attributes.timemarch).forEach((fieldName) => {
+      const value = attributes.timemarch[fieldName].value;
       if (value.length === 1) {
-        oscillator[fieldName] = value[0];
+        timemarch[fieldName] = value[0];
       } else {
-        oscillator[fieldName] = value;
+        timemarch[fieldName] = value;
       }
     });
     lines.push([
-      `${oscillator.type}`,
-      `${oscillator.center[0]} ${oscillator.center[1]} ${oscillator.center[2]}`,
-      `${oscillator.radius}`,
-      `${oscillator.omega0}`,
-      `${oscillator.zeta || ''}`,
+      `${timemarch.type}`,
+      `${timemarch.totaltime}`,
+      `${timemarch.timestep}`,
+      `${timemarch.accuracy}`,
+      `${timemarch.pseudocycles}`,
     ]);
   });
 
@@ -54,57 +52,7 @@ module.exports = function convert(dataModel) {
   }
 
   // Use dummy line writer
-  results['oscillator_list.osc'] = outputTemplate({ lines });
-
-  // analyses, have sub-object matching type, with the attributes.
-  const histogram = [];
-  const autocorrelation = [];
-  dataModel.data.analyses.forEach((attributes) => {
-    const analysis = {};
-    const type = attributes.analysis.type.value[0];
-    Object.keys(attributes[type]).forEach((fieldName) => {
-      const value = attributes[type][fieldName].value;
-      if (value.length === 1) {
-        analysis[fieldName] = value[0];
-      } else {
-        analysis[fieldName] = value;
-      }
-    });
-    console.log(analysis);
-    if (type === 'histogram') {
-      // fill in associated fields.
-      if (analysis.mesh === 'particles') {
-        analysis.array = "velocityMagnitude";
-        analysis.association="point";
-      } else {
-        analysis.array = "data";
-        analysis.association="cell";
-      }
-      histogram.push(analysis);
-    } else if (type === 'autocorrelation') {
-      autocorrelation.push(analysis);
-    }
-  });
-
-  // analysis xml
-  results['analysis_config.xml'] = configTemplate({ histogram, autocorrelation });
-
-
-  const runParams = {};
-  if (dataModel.data.run) {
-    const params = dataModel.data.run[0].runParams;
-    Object.keys(params).forEach((fieldName) => {
-      const value = params[fieldName].value;
-      if (value.length === 1) {
-        runParams[fieldName] = value[0];
-      } else {
-        runParams[fieldName] = value;
-      }
-    });
-  }
-
-  // analysis xml
-  results['run.sh'] = runTemplate(runParams);
+  results['timemarch_list.osc'] = outputTemplate({ lines });
 
   return { results, model: dataModel };
 };
