@@ -1,7 +1,8 @@
 {
   "views": {
     "timemarcher": "Time Marcher",
-    "solverscheme": "Solver Scheme"
+    "solverscheme": "Solver Scheme",
+    "cfldata": "CFL Settings"
   },
   "attributes": {
     "timemarch": {
@@ -28,6 +29,19 @@
         "rasanov": "Rasanov Flux for Jacobian (True or False)",
         "finite_difference": "Finite Difference Jacobian (True or False)"
       }
-    }    
+    },
+    "cfl": {
+      "title": "CFL Control Settings",
+      "parameters": {
+        "maxcfl_all": "Default Max CFL Number for all Equations",
+        "maxcfl_transport": "Override Max CFL Number for Transported Quantities",
+        "maxcfl_coarse": "Override Max CFL Number for Coarse Meshes",
+        "multipolycfl_lower": "Control of CFL for Polynomial Multigrid (Lowest Order)",
+        "multipolycfl_upper": "Control of CFL for Polynomial Multigrid (Highest Order)",
+        "ramp_factor": "Ramp CFL (Yes or No)",
+        "growth": "CFL = cfl_ini * growth ^ cycle",
+        "initial": "Min CFL"
+      }
+    }     
   }
 }
