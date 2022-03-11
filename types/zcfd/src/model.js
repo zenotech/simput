@@ -26,21 +26,21 @@ module.exports = {
           type: 'solverToExternal',
         },
       ],
-    },   
-  },
-  cfldata: {
-    size: -1,
-    attributes: ['cfl'],
-    hooks: [
-      {
-        type: 'copyParameterToViewName',
-        attribute: 'cfl.name',
-      },
-      {
-        type: 'cflToExternal',
-      },
-    ],
-  },  
+    },
+    cfldata: {
+      size: -1,
+      attributes: ['cfl'],
+      hooks: [
+        {
+          type: 'copyParameterToViewName',
+          attribute: 'cfl.name',
+        },
+        {
+          type: 'cflToExternal',
+        },
+      ],
+    },
+  },   
   definitions: {
     timemarch: {
       parameters: [
