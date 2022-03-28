@@ -118,9 +118,9 @@
     ],
     "cfldata": [
       {
-        "cfl": "normal",
+        "cflname": "normal",
         "id": 0,
-        "solver": {
+        "cfl": {
           "cflname": {
             "id": "cfl.cflname",
             "value": [
@@ -177,7 +177,651 @@
           }                   
         }
       }
-    ]    
+    ],
+    "equations": [
+      {
+        "equation_name": "normal",
+        "id": 0,
+        "equation": {
+          "equations": {
+            "id": "equation.equation_name",
+            "value": [
+              "normal"
+            ]
+          },
+          "order": {
+            "id": "equation.order",
+            "value": [
+              "second"
+            ]
+          },
+          "limiter": {
+            "id": "equation.limiter",
+            "value": [
+              "vanalbada"
+            ]
+          },
+          "precondition": {
+            "id": "equation.precondition",
+            "value": [
+              "true"
+            ]
+          },
+          "linear_gradients": {
+            "id": "equation.linear_gradients",
+            "value": [
+              "false"
+            ]
+          },
+          "inviscid_flux_scheme": {
+            "id": "equation.inviscid_flux_scheme",
+            "value": [
+              "hllc"
+            ]
+          },
+          "leastsq_gradients": {
+            "id": "equation.leastsq_gradients",
+            "value": [
+              "false"
+            ]
+          },
+          "model": {
+            "id": "equation.model",
+            "value": [
+              "sst"
+            ]
+          },
+          "les": {
+            "id": "equation.les",
+            "value": [
+              "none"
+            ]
+          },
+          "betastar": {
+            "id": "equation.betastar",
+            "value": [
+              "0.09"
+            ]
+          },
+          "limit_mut": {
+            "id": "equation.limit_mut",
+            "value": [
+              "false"
+            ]
+          },
+          "cdes": {
+            "id": "equation.cdes",
+            "value": [
+              "0.65"
+            ]
+          },
+          "cdes_kw": {
+            "id": "equation.cdes_kw",
+            "value": [
+              "0.78"
+            ]
+          },
+          "cdes_keps": {
+            "id": "equation.cdes_keps",
+            "value": [
+              "0.61"
+            ]
+          },
+          "Cd1": {
+            "id": "equation.cd1",
+            "value": [
+              "20"
+            ]
+          },
+          "Cd2": {
+            "id": "equation.cd2",
+            "value": [
+              "3"
+            ]
+          },
+          "Cdw": {
+            "id": "equation.cdw",
+            "value": [
+              "0.15"
+            ]
+          },          
+          "production": {
+            "id": "equation.production",
+            "value": [
+              "0"
+            ]
+          },
+          "rotation_correction": {
+            "id": "equation.rotation_correction",
+            "value": [
+              "true"
+            ]
+          },
+          "limit_gradient_k": {
+            "id": "equation.limit_gradient_k",
+            "value": [
+              "0.5"
+            ]
+          },
+          "ca1": {
+            "id": "equation.ca1",
+            "value": [
+              "2.0"
+            ]
+          },
+          "ca2": {
+            "id": "equation.ca2",
+            "value": [
+              "0.06"
+            ]
+          },
+          "ca3": {
+            "id": "equation.ca3",
+            "value": [
+              "1.0"
+            ]
+          },
+          "ca4": {
+            "id": "equation.ca4",
+            "value": [
+              "50.0"
+            ]
+          },
+          "cthetat": {
+            "id": "equation.cthetat",
+            "value": [
+              "0.03"
+            ]
+          },
+          "sigmagamma": {
+            "id": "equation.sigmagamma",
+            "value": [
+              "1.0"
+            ]
+          },
+          "sigmathetat": {
+            "id": "equation.sigmathetat",
+            "value": [
+              "2.0"
+            ]
+          },
+          "separation_correction": {
+            "id": "equation.separation_correction",
+            "value": [
+              "true"
+            ]
+          },
+          "c11_stability_parameter": {
+            "id": "equation.c11_stability_parameter",
+            "value": [
+              "0"
+            ]
+          },
+          "ldg_upwind_parameter": {
+            "id": "equation.ldg_upwind_parameter",
+            "value": [
+              "0.5"
+            ]
+          },
+          "shock_sensing": {
+            "id": "equation.shock_sensing",
+            "value": [
+              "false"
+            ]
+          },
+          "shock_sensing_k": {
+            "id": "equation.shock_sensing_k",
+            "value": [
+              "1.0"
+            ]
+          },
+          "shock_sensing_viscosity_scale": {
+            "id": "equation.shock_sensing_viscosity_scale",
+            "value": [
+              "1.0"
+            ]
+          },
+          "shock_sensing_variable": {
+            "id": "equation.shock_sensing_variable",
+            "value": [
+              "density"
+            ]
+          },
+          "inviscid_flow": {
+            "id": "equation.inviscid_flow",
+            "value": [
+              "false"
+            ]
+          },
+          "freeze_diff_during_rk": {
+            "id": "equation.freeze_diff_during_rk",
+            "value": [
+              "false"
+            ]
+          }                                                           
+        }
+      }
+    ],
+    "materialspec": [
+      {
+        "material": "normal",
+        "id": 0,
+        "materials": {
+          "material": {
+            "id": "materials.material",
+            "value": [
+              "normal"
+            ]
+          },
+          "gamma": {
+            "id": "materials.gamma",
+            "value": [
+              "1.4"
+            ]
+          },
+          "gas_constant": {
+            "id": "materials.gas_constant",
+            "value": [
+              "287.0"
+            ]
+          },
+          "sutherlands_const": {
+            "id": "materials.sutherlands_const",
+            "value": [
+              "110.4"
+            ]
+          },
+          "prandtl_no": {
+            "id": "materials.prandtl_no",
+            "value": [
+              "0.72"
+            ]
+          },
+          "turb_prandtl_no": {
+            "id": "materials.turb_prandtl_no",
+            "value": [
+              "0.9"
+            ]
+          }                   
+        }
+      }
+    ],
+    "initialconditions": [
+      {
+        "ic_name": "normal",
+        "id": 0,
+        "ics": {
+          "ic_name": {
+            "id": "ics.ic_name",
+            "value": [
+              "normal"
+            ]
+          },
+          "static_temp": {
+            "id": "ics.static_temp",
+            "value": [
+              "293.0"
+            ]
+          },
+          "static_pressure": {
+            "id": "ics.static_pressure",
+            "value": [
+              "101325.0"
+            ]
+          },
+          "ic_velocity_vector": {
+            "id": "ics.ic_velocity_vector",
+            "value": []
+          },
+          "ic_mach": {
+            "id": "ics.ic_mach",
+            "value": [
+              "0.2"
+            ]
+          },
+          "viscocity_dynamic": {
+            "id": "ics.viscocity_dynamic",
+            "value": [
+              "1.83e-5"
+            ]
+          },
+          "reynolds_no": {
+            "id": "ics.reynolds_no",
+            "value": [
+              "5.0e6"
+            ]
+          },
+          "reference_length": {
+            "id": "ics.reference_length",
+            "value": [
+              "1.0"
+            ]
+          },
+          "turbulence_intensity": {
+            "id": "ics.turbulence_intensity",
+            "value": [
+              "0.01"
+            ]
+          },
+          "amb_turbulence_intensity": {
+            "id": "ics.0.01",
+            "value": [
+              "0.72"
+            ]
+          },
+          "eddy_visc_ratio": {
+            "id": "ics.eddy_visc_ratio",
+            "value": [
+              "0.1"
+            ]
+          },
+          "amb_eddy_visc_ratio": {
+            "id": "ics.amb_eddy_visc_ratio",
+            "value": [
+              "0.1"
+            ]
+          },
+          "abl": {
+            "id": "ics.abl",
+            "value": [
+              "287.0"
+            ]
+          },
+          "roughness_length": {
+            "id": "ics.roughness_length",
+            "value": [
+              "0.0003"
+            ]
+          },
+          "friction_vel": {
+            "id": "ics.friction_vel",
+            "value": [
+              "0.4"
+            ]
+          },
+          "surface_layer_height": {
+            "id": "ics.surface_layer_height",
+            "value": [
+              "-1.0"
+            ]
+          },
+          "monin_obukhov_length": {
+            "id": "ics.monin_obukhov_length",
+            "value": [
+              "-1.0"
+            ]
+          },
+          "tke": {
+            "id": "ics.tke",
+            "value": [
+              "0.928"
+            ]
+          },
+          "z0": {
+            "id": "ics.z0",
+            "value": [
+              "-0.75"
+            ]
+          },
+          "total_pressure_ratio": {
+            "id": "ics.total_pressure_ratio",
+            "value": [
+              "1.0"
+            ]
+          },
+          "total_temp_ratio": {
+            "id": "ics.total_temp_ratio",
+            "value": [
+              "1.0"
+            ]
+          },
+          "static_pressure_ratio": {
+            "id": "ics.static_pressure_ratio",
+            "value": [
+              "1.0"
+            ]
+          },
+          "mass_flow_ratio": {
+            "id": "ics.mass_flow_ratio",
+            "value": [
+              "1.0"
+            ]
+          },
+          "mass_flow_rate": {
+            "id": "ics.mass_flow_rate",
+            "value": [
+              "10.0"
+            ]
+          }                                                           
+        }
+      }
+    ],
+    "boundaryconditions": [
+      {
+        "bc_name": "normal",
+        "id": 0,
+        "bcs": {
+          "bc_name": {
+            "id": "bcs.material",
+            "value": [
+              "normal"
+            ]
+          },
+          "ref": {
+            "id": "bcs.ref",
+            "value": [
+              "3"
+            ]
+          },
+          "zone": {
+            "id": "bcs.zone",
+            "value": []
+          },
+          "bc_type": {
+            "id": "bcs.bc_type",
+            "value": [
+              "wall"
+            ]
+          },
+          "bc_kind": {
+            "id": "bcs.bc_kind",
+            "value": [
+              "slip"
+            ]
+          },
+          "roughness_type": {
+            "id": "bcs.roughness_type",
+            "value": [
+              "height"
+            ]
+          },
+          "roughness_scalar": {
+            "id": "bcs.roughness_scalar",
+            "value": [
+              "0.001"
+            ]
+          },
+          "roughness_field": {
+            "id": "bcs.roughness_field",
+            "value": []
+          },
+          "bc_velocity_vector": {
+            "id": "bcs.bc_velocity_vector",
+            "value": []
+          },
+          "bc_mach": {
+            "id": "bcs.bc_mach",
+            "value": [
+              "0.20"
+            ]
+          },
+          "bc_omega": {
+            "id": "bcs.bc_omega",
+            "value": [
+              "2.0"
+            ]
+          },
+          "rotation_axis": {
+            "id": "bcs.rotation_axis",
+            "value": []
+          },
+          "rotation_origin": {
+            "id": "bcs.rotation_origin",
+            "value": []
+          },
+          "wall_temp_scalar": {
+            "id": "bcs.wall_temp_scalar",
+            "value": [
+              "280.0"
+            ]
+          },
+          "wall_temp_field": {
+            "id": "bcs.wall_temp_field",
+            "value": []
+          },
+          "required_ic": {
+            "id": "bcs.required_ic",
+            "value": [
+              "riemann"
+            ]
+          },
+          "length_scale": {
+            "id": "bcs.length_scale",
+            "value": []
+          },
+          "reynolds_tensor": {
+            "id": "bcs.reynolds_tensor",
+            "value": []
+          },
+          "ref_radius": {
+            "id": "bcs.ref_radius",
+            "value": [
+              "1.0"
+            ]
+          },
+          "periodic_theta": {
+            "id": "bcs.periodic_theta",
+            "value": []
+          },
+          "periodic_axis": {
+            "id": "bcs.periodic_axis",
+            "value": []
+          },
+          "periodic_origin": {
+            "id": "bcs.periodic_origin",
+            "value": []
+          }                                                 
+        }
+      }
+    ],
+    "output": [
+      {
+        "output_name": "normal",
+        "id": 0,
+        "out": {
+          "output_name": {
+            "id": "out.output_name",
+            "value": [
+              "normal"
+            ]
+          },
+          "format": {
+            "id": "out.format",
+            "value": []
+          },
+          "surface_variables": {
+            "id": "out.surface_variables",
+            "value": []
+          },
+          "volume_variables": {
+            "id": "out.volume_variables",
+            "value": []
+          },
+          "volume_interpolate": {
+            "id": "out.volume_interpolate",
+            "value": []
+          },
+          "scripts": {
+            "id": "out.scripts",
+            "value": []
+          },
+          "variable_name_alias": {
+            "id": "out.variable_name_alias",
+            "value": []
+          },
+          "volume_data_freq": {
+            "id": "out.volume_data_freq",
+            "value": [
+              "3"
+            ]
+          },
+          "surface_data_freq": {
+            "id": "out.surface_data_freq",
+            "value": [
+              "3"
+            ]
+          },
+          "volume_interpolate_freq": {
+            "id": "out.volume_interpolate_freq",
+            "value": [
+              "3"
+            ]
+          },
+          "checkpoint": {
+            "id": "out.checkpoint",
+            "value": [
+              "3"
+            ]
+          },          
+          "volume_data_start": {
+            "id": "out.volume_data_start",
+            "value": [
+              "1"
+            ]
+          },
+          "surface_data_start": {
+            "id": "out.surface_data_start",
+            "value": [
+              "1"
+            ]
+          },
+          "volume_interpolate_start": {
+            "id": "out.volume_interpolate_start",
+            "value": [
+              "1"
+            ]
+          },
+          "checkpoint_start": {
+            "id": "out.checkpoint_start",
+            "value": [
+              "1"
+            ]
+          },
+          "high_order_surface_list": {
+            "id": "out.high_order_surface_list",
+            "value": []
+          },
+          "no_volume_vtk": {
+            "id": "out.no_volume_vtk",
+            "value": [
+              "false"
+            ]
+          },
+          "calculate_averge_and_rms": {
+            "id": "out.calculate_averge_and_rms",
+            "value": [
+              "true"
+            ]
+          },
+          "average_start_time_cycle": {
+            "id": "out.average_start_time_cycle",
+            "value": [
+              "1000"
+            ]
+          }                                                 
+        }
+      }
+    ]                        
   },
   "hideViews": [],
   "type": "solver"

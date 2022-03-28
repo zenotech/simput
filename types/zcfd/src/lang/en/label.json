@@ -2,7 +2,12 @@
   "views": {
     "timemarcher": "Time Marcher",
     "solverscheme": "Solver Scheme",
-    "cfldata": "CFL Settings"
+    "cfldata": "CFL Settings",
+    "equations": "Equations",
+    "materialspec": "Material Specifications",
+    "initialconditions": "Initial Conditions",
+    "boundaryconditions": "Boundary Conditions",
+    "output": "Output"
   },
   "attributes": {
     "timemarch": {
@@ -23,15 +28,15 @@
         "time_scheme": "Time Stepping Scheme",
         "sgs_cycles": "Number of SGS Cycles",
         "jacobian_update_freq": "Jacobian Update Frequency",
-        "backward_sweep": "Include Backward Sweep (True or False)",
-        "relaxation": "Include Relaxation (True or False)",
+        "backward_sweep": "Include Backward Sweep",
+        "relaxation": "Include Relaxation",
         "jacobian_epsilon": "Jacobian Epsilon",
-        "rasanov": "Rasanov Flux for Jacobian (True or False)",
-        "finite_difference": "Finite Difference Jacobian (True or False)"
+        "rasanov": "Rasanov Flux for Jacobian",
+        "finite_difference": "Finite Difference Jacobian"
       }
     },
     "cfl": {
-      "title": "CFL Control Settings",
+      "title": "CFL Setting",
       "parameters": {
         "maxcfl_all": "Default Max CFL Number for all Equations",
         "maxcfl_transport": "Override Max CFL Number for Transported Quantities",
@@ -42,6 +47,162 @@
         "growth": "CFL = cfl_ini * growth ^ cycle",
         "initial": "Min CFL"
       }
-    }     
+    },
+    "equation": {
+      "title": "Equation Settings",
+      "parameters": {
+        "type": "Equation Type",
+        "order": "Spatial Accuracy",
+        "limiter": "MUSCL Limiter (Vanalbada)",
+        "precondition": "Use Low Speed Mach Preconditioner",
+        "linear_gradients": "Use Linear Gradients",
+        "inviscid_flux_scheme": "Scheme for Inviscid Flux",
+        "leastsq_gradients": "Use Least Square Gradients",
+        "model": "Turbulence Model",
+        "les": "LES Model",
+        "betastar": "Betastar Turbulence Closure Constant",
+        "limit_mut": "Turn off mu_t Limiter",
+        "cdes": "CDES",
+        "cdes_kw": "CDES_kw",
+        "cdes_keps": "CDES_keps",
+        "cd1": "(I)DDES Constant Cd1",
+        "cd2": "(I)DDES Constant Cd2",
+        "cdw": "(I)DDES Constant Cd3",        
+        "production": "Menter SST Production Term (0=SST-V, 1=Incompressible, 2=SST)",
+        "rotation_correction": "Use sa-neg Rotation Correction",
+        "limit_gradient_k": "Limit sa-ne Gradient Based on the Maximum Value Between Neighbouring Cells",
+        "ca1": "Transition Model Constant CA1",
+        "ca2": "Transition Model Constant CA2",
+        "ce1": "Transition Model Constant CA3",
+        "ce2": "Transition Model Constant CA4",
+        "cthetat": "Transition Model Constant CThetaT",
+        "sigmagamma": "Transition Model Constant SigmaGamma",
+        "sigmathetat": "Transition Model Constant SigmaThetaT",
+        "separation_correction": "Transition Separation Correction Model",
+        "spatial_poly_order":"Spatial Polynomial Order",
+        "c11_stability_parameter": "C11 Stability Parameter",
+        "ldg_upwind_parameter": "LDG Upwind Parameter",
+        "shock_sensing": "Shock Sensing",
+        "shock_sensing_k": "Shock Sensing k",
+        "shock_sensing_viscosity_scale": "Shock Sensing Viscosity Scale",
+        "shock_sensing_variable": "Shock Sensing Variable",
+        "inviscid_flow": "Inviscid Flow",
+        "freeze_diff_during_rk": "Freeze Diffusion During RK Stages"                           
+      }
+    },
+    "materials": {
+      "title": "Material Specification",
+      "parameters": {
+        "gamma": "Gamma",
+        "gas_constant": "Gas Constant",
+        "sutherlands_const": "Sutherland's Constant",
+        "prandtl_no": "Prandtl Number",
+        "turb_prandtl_no": "Turbulent Prandtl Number"
+      }
+    },
+    "ics": {
+      "title": "Initial Condition",
+      "parameters": {
+        "static_temp": "Static Temperature (K)",
+        "static_pressure": "Static Pressure (Pa)",
+        "ic_velocity_vector": "Velocity Vector [x y z]",
+        "ic_mach": "Mach Number",
+        "viscocity_dynamic": "Dynamic Viscocity (in dimensional units)",
+        "reynolds_no": "Reynold's Number",
+        "reference_length": "Reference Length",
+        "turbulence_intensity": "Turbulence Intensity (%)",
+        "amb_turbulence_intensity": "Ambient Turbulence Intensity (%)",
+        "eddy_visc_ratio": "Eddy Viscocity Ratio",
+        "amb_eddy_visc_ratio": "Ambient Eddy Viscocity Ratio",
+        "abl": "Atmospheric Boundary Layer",
+        "roughness_length": "Roughness Length",
+        "friction_vel": "Friction Velocity",
+        "surface_layer_height": "Surface Layer Height",
+        "monin_obukhov_length": "Monin-Obukhov Length",
+        "tke": "Non dimensional TKE/Friction Velocity",
+        "z0": "Ground Level",
+        "field": "Field",
+        "walldis": "Use Wall Distance",
+        "total_pressure_ratio": "Total Pressure Ratio",
+        "total_temp_ratio": "Total Temperature Ratio",
+        "static_pressure_ratio": "Static Pressure Ratio",
+        "mass_flow_ratio": "Mass Flow Ratio",
+        "mass_flow_rate": "Mass Flow Rate"        
+      }
+    },
+    "bcs": {
+      "title": "Boundary Condition",
+      "parameters": {
+        "ref": "Zone Type Tag",
+        "zone": "Specific Zone Boundary Condition Override (Optional)",
+        "bc_type": "Boundary Condition Type",
+        "wall_kind": "Kind of Wall Boundary Condition",
+        "farfield_kind": "Kind of Farfield Boundary Condition",
+        "farfield_ic": "Required Farfield Conditions",
+        "inflow_kind": "Kind of Inflow Boundary Condition",
+        "inflow_ic": "Reference Inflow Conditions",
+        "outflow_kind": "Kind of Outflow Boundary Condition",
+        "outflow_ic": "Reference Outflow Conditions",
+        "symmetry_kind": "Kind of Symmetry Boundary Condition",
+        "periodic_kind": "Kind of Periodic Boundary Condition",
+        "roughness_spec": "Roughness Specification (Optional)",
+        "roughness_type": "Type of Roughness Specification",
+        "roughness_scalar": "Constant Roughness Scalar",
+        "roughness_field": "Roughness Field (Specified as VTK File)",
+        "wall_vel_spec": "Wall Velocity Specification (Optional)",
+        "bc_velocity_vector": "Velocity Vector [x y z]",
+        "bc_mach": "Mach Number",
+        "bc_omega": "Rotational Velocity in rad/s",
+        "rotation_axis": "Rotation Axis",
+        "rotation_origin": "Rotation Origin",
+        "wall_temp_spec": "Wall Temperature Specification (Optional)",
+        "wall_temp_scalar": "Scalar Wall Temperature",
+        "wall_temp_field": "Temperature Field (Specified as VTK File)",
+        "abl": "Define Atmospheric Boundary Layer",
+        "roughness_length": "Roughness Length",
+        "friction_vel": "Friction Velocity",
+        "surface_layer_height": "Surface Layer Height",
+        "monin_obukhov_length": "Monin-Obukhov Length",
+        "tke": "Non dimensional TKE/Friction Velocity",
+        "z0": "Ground Level",
+        "turb_profile": "Specify Turbulence Profile (Optional)",
+        "required_ic": "Required Initial Condition",
+        "length_scale": "Turbulence Profile Length Scale (VTP File)",
+        "reynolds_tensor": "Turbulence Profile Reynold's Tensor (VTP File)",
+        "ref_radius": "Radius at which the Static Pressure Ratio is Defined",
+        "periodic_theta": "Rotated Periodic Theta",
+        "periodic_axis": "Rotated Periodic Axis",
+        "periodic_origin": "Rotated Periodic Origin",
+        "linear_vec": "Vector"             
+      }
+    },
+    "out": {
+      "title": "Output Settings",
+      "parameters": {
+        "format": "Output Format",
+        "surface_variables": "Variables to Output on Each Boundary Type",
+        "volume_variables": "Field Variables to be Output",
+        "volume_interpolate": "Volume Interpolation - Interpolates Cell Values to Points in Supplied Meshes",
+        "volume_interpolate_spec": "File types can be vtp, vtu or binary stl",
+        "scripts": "Paraview Catalyst Scripts",
+        "scripts_spec": "Define Paraview Catalyst Scripts",
+        "variable_name_alias": "Variable Name Alias - if downstream processes need variables named using a specific convention a naming alias dictionary can be supplied",
+        "variable_name_spec": "Variable Name Alias Specification",
+        "volume_data_freq": "Volume Data Output Frequency",
+        "surface_data_freq": "Surface Data Output Frequency",
+        "volume_interpolate_freq": "Volume Interpolate Output Frequency",
+        "checkpoint": "Checkpoint Output Frequency",
+        "volume_data_start": "Volume Data Start",
+        "surface_data_start": "Surface Data Start",
+        "volume_interpolate_start": "Volume Interpolate Start",
+        "checkpoint_start": "Checkpoint Start",
+        "high_order_surface_list": "Optional for DG: Output high order surface data on zones",
+        "high_order_surface_zone": "Specify Zone",
+        "no_volume_vtk": "Don't Output VTK Volume Data",
+        "calculate_averge_and_rms": "Calculate mean and RMS data when running unsteady",
+        "average_start_time_cycle": "Start time averaging at a specific time step",
+        "average_start_time": "Average Start Time Cycle"
+      }
+    }                         
   }
 }
