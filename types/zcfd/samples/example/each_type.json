@@ -121,8 +121,8 @@
         "cflname": "normal",
         "id": 0,
         "cfl": {
-          "cflname": {
-            "id": "cfl.cflname",
+          "jobname": {
+            "id": "cfl.jobname",
             "value": [
               "normal"
             ]

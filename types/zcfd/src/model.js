@@ -307,7 +307,7 @@ module.exports = {
           default: [2.0],
         },
         {
-          id: 'ramp_factor',
+          id: 'ramp',
           type: 'enum',
           size: 1,
           default: 'no',
@@ -320,14 +320,14 @@ module.exports = {
           id: 'growth',
           type: 'double',
           size: 1,
-          show: "type[0] === 'yes'",                   
+          show: "ramp[0] === 'yes'",                   
           default: [1.05],
         },
         {
           id: 'initial',
           type: 'double',
           size: 1,
-          show: "type[0] === 'yes'",                   
+          show: "ramp[0] === 'yes'",                   
           default: [0.1],
         },                                                    
       ],
@@ -373,7 +373,7 @@ module.exports = {
           default: 'vanalbada',
           domain: {
             Vanalbada: 'vanalbada',
-            NA: 'na',
+            Default: 'default',
           }
         }, 
         {
@@ -384,7 +384,7 @@ module.exports = {
           domain: {
             True: 'true',
             False: 'false',  
-            NA: 'na',          
+            Default: 'default',        
           }
         }, 
         {
@@ -395,7 +395,7 @@ module.exports = {
           domain: {
             True: 'true',
             False: 'false',     
-            NA: 'na',       
+            Default: 'default',     
           }
         }, 
         {
@@ -406,7 +406,7 @@ module.exports = {
           domain: {
             HLLC: 'hllc',
             Rusanov: 'rusanov',     
-            NA: 'na',       
+            Default: 'default',  
           }
         }, 
         {
@@ -418,7 +418,7 @@ module.exports = {
           domain: {
             True: 'true',
             False: 'false',    
-            NA: 'na',          
+            Default: 'default',      
           }
         },
         {
@@ -444,7 +444,7 @@ module.exports = {
             DES: 'des',
             DDES: 'ddes',
             SAS: 'sas',    
-            NA: 'na',      
+            Default: 'default',   
           }
         },
         {
@@ -463,7 +463,7 @@ module.exports = {
           domain: {
             True: 'true',
             False: 'false',   
-            NA: 'na',           
+            Default: 'default',          
           }
         }, 
         {
@@ -529,7 +529,7 @@ module.exports = {
           domain: {
             True: 'true',
             False: 'false',   
-            NA: 'na',             
+            Default: 'default',           
           }
         },   
         {
@@ -597,7 +597,7 @@ module.exports = {
           domain: {
             True: 'true',
             False: 'false',   
-            NA: 'na',             
+            Default: 'default',          
           }
         },                                                   
       ],
@@ -730,42 +730,42 @@ module.exports = {
           id: 'roughness_length',
           type: 'double',
           size: 1, 
-          show: "type[0] === 'specify'",          
+          show: "abl[0] === 'specify'",          
           default: [0.0003],
         },
         {
           id: 'friction_vel',
           type: 'double',
           size: 1,       
-          show: "type[0] === 'specify'",    
+          show: "abl[0] === 'specify'",    
           default: [0.4],
         },
         {
           id: 'surface_layer_height',
           type: 'double',
           size: 1,
-          show: "type[0] === 'specify'",                 
+          show: "abl[0] === 'specify'",                 
           default: [-1.0],
         },      
         {
           id: 'monin_obukhov_length',
           type: 'double',
           size: 1,
-          show: "type[0] === 'specify'",                 
+          show: "abl[0] === 'specify'",                 
           default: [-1.0],
         },     
         {        
           id: 'tke',
           type: 'double',
           size: 1,
-          show: "type[0] === 'specify'",                 
+          show: "abl[0] === 'specify'",                 
           default: [0.928],
         },  
         {
           id: 'z0',
           type: 'double',
           size: 1,
-          show: "type[0] === 'specify'",                 
+          show: "abl[0] === 'specify'",                 
           default: [-0.75],
         },      
         {
@@ -853,7 +853,7 @@ module.exports = {
           id: 'wall_kind',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'wall'",  
+          show: "bc_type[0] === 'wall'",  
           default: 'slip',
           domain: {
             Slip: 'slip',
@@ -865,7 +865,7 @@ module.exports = {
           id: 'roughness_spec',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'wall'",  
+          show: "bc_type[0] === 'wall'",  
           default: 'no',
           domain: {
             Define: 'define_roughness',
@@ -876,7 +876,7 @@ module.exports = {
           id: 'roughness_type',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'define_roughness'",  
+          show: "roughness_spec[0] === 'define_roughness'",  
           default: 'height',
           domain: {
             Height: 'height',
@@ -887,21 +887,21 @@ module.exports = {
           id: 'roughness_scalar',
           type: 'double',
           size: 1,        
-          show: "type[0] === 'define_roughness'",       
+          show: "roughness_spec[0] === 'define_roughness'",       
           default: [],
         },
         {
           id: 'roughness_field',
           type: 'string',
           size: 1,    
-          show: "type[0] === 'define_roughness'",           
+          show: "roughness_spec[0] === 'define_roughness'",           
           default: [1.0],
         },
         {
           id: 'wall_vel_spec',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'wall'",  
+          show: "bc_type[0] === 'wall'",  
           default: 'no',
           domain: {
             Define: 'define_wall_vel',
@@ -912,7 +912,7 @@ module.exports = {
           id: 'wall_vel_type',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'define_wall_vel'",  
+          show: "wall_vel_spec[0] === 'define_wall_vel'",  
           default: 'linear',
           domain: {
             Linear: 'linear',
@@ -923,42 +923,42 @@ module.exports = {
           id: 'bc_velocity_vector',
           type: 'double',
           size: 1,        
-          show: "type[0] === 'linear'",   
+          show: "wall_vel_type[0] === 'linear'",   
           default: [],
         },
         {
           id: 'bc_mach',
           type: 'double',
           size: 1,         
-          show: "type[0] === 'linear'",  
+          show: "wall_vel_type[0] === 'linear'",  
           default: [0.20],
         },  
         {
           id: 'bc_omega',
           type: 'double',
           size: 1, 
-          show: "type[0] === 'rotating'",          
+          show: "wall_vel_type[0] === 'rotating'",          
           default: [2.0],
         },
         {
           id: 'rotation_axis',
           type: 'double',
           size: 1,       
-          show: "type[0] === 'rotating'",    
+          show: "wall_vel_type[0] === 'rotating'",    
           default: [],
         },
         {
           id: 'rotation_origin',
           type: 'double',
           size: 1,
-          show: "type[0] === 'rotating'",                 
+          show: "wall_vel_type[0] === 'rotating'",                 
           default: [],
         }, 
         {
           id: 'wall_temp_spec',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'wall'",  
+          show: "bc_type[0] === 'wall'",  
           default: 'no',
           domain: {
             Define: 'define_wall_temp',
@@ -969,21 +969,21 @@ module.exports = {
           id: 'wall_temp_scalar',
           type: 'double',
           size: 1,       
-          show: "type[0] === 'define_wall_temp'",    
+          show: "wall_temp_spec[0] === 'define_wall_temp'",    
           default: [280.0],
         },
         {
           id: 'wall_temp_field',
           type: 'string',
           size: 1,
-          show: "type[0] === 'define_wall_temp'",                 
+          show: "wall_temp_spec[0] === 'define_wall_temp'",                 
           default: [],
         }, 
         {
           id: 'farfield_kind',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'farfield'",  
+          show: "bc_type[0] === 'farfield'",  
           default: 'riemann',
           domain: {
             Riemann: 'riemann',
@@ -995,14 +995,14 @@ module.exports = {
           id: 'farfield_ic',
           type: 'string',
           size: 1,
-          show: "type[0] === 'farfield'",                 
-          default: [-1.0],
+          show: "bc_type[0] === 'farfield'",                 
+          default: [],
         },      
         {
           id: 'abl',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'farfield'",  
+          show: "bc_type[0] === 'farfield'",  
           default: 'ignore_abl',
           domain: {
             No: 'ignore_abl',
@@ -1013,49 +1013,49 @@ module.exports = {
           id: 'roughness_length',
           type: 'double',
           size: 1,
-          show: "type[0] === 'define_abl'",                 
+          show: "abl[0] === 'define_abl'",                 
           default: [0.05],
         },  
         {
           id: 'friction_vel',
           type: 'double',
           size: 1,
-          show: "type[0] === 'define_abl'",                 
+          show: "abl[0] === 'define_abl'",                 
           default: [2.0],
         },      
         {
           id: 'surface_layer_height',
           type: 'double',
           size: 1,
-          show: "type[0] === 'define_abl'",                 
+          show: "abl[0] === 'define_abl'",                 
           default: [1000],
         },     
         {
           id: 'monin_obukhov_length',
           type: 'double',
           size: 1,
-          show: "type[0] === 'define_abl'",                 
+          show: "abl[0] === 'define_abl'",                 
           default: [2.0],
         },   
         {
           id: 'tke',
           type: 'double',
           size: 1,
-          show: "type[0] === 'define_abl'",                 
+          show: "abl[0] === 'define_abl'",                 
           default: [1.0],
         },  
         {
           id: 'z0',
           type: 'double',
           size: 1,
-          show: "type[0] === 'define_abl'",                 
+          show: "abl[0] === 'define_abl'",                 
           default: [0.0],
         },  
         {
           id: 'turb_profile',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'farfield'",  
+          show: "bc_type[0] === 'farfield'",  
           default: 'ignore_turb',
           domain: {
             No: 'ignore_turb',
@@ -1078,7 +1078,7 @@ module.exports = {
           id: 'inflow_kind',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'inflow'",  
+          show: "bc_type[0] === 'inflow'",  
           default: 'default',
           domain: {
             Default: 'default',
@@ -1089,7 +1089,7 @@ module.exports = {
           id: 'outflow_kind',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'outflow'",  
+          show: "bc_type[0] === 'outflow'",  
           default: 'pressure',
           domain: {
             Pressure: 'pressure',
@@ -1101,21 +1101,21 @@ module.exports = {
           id: 'ref_radius',
           type: 'double',
           size: 1,  
-          show: "type[0] === 'radial_pressure_grad'",        
+          show: "outflow_kind[0] === 'radial_pressure_grad'",        
           default: [1.0],
         },    
         {
           id: 'outflow_ic',
           type: 'string',
           size: 1,  
-          show: "type[0] === 'outflow'",        
+          show: "bc_type[0] === 'outflow'",        
           default: [],
         },   
         {
           id: 'periodic_kind',
           type: 'enum',
           size: 1,   
-          show: "type[0] === 'periodic'",  
+          show: "bc_type[0] === 'periodic'",  
           default: 'rotated',
           domain: {
             Rotated: 'rotated',
@@ -1126,28 +1126,28 @@ module.exports = {
           id: 'periodic_theta',
           type: 'string',
           size: 1,  
-          show: "type[0] === 'rotated'",        
+          show: "periodic_kind[0] === 'rotated'",        
           default: [],
         },  
         {
           id: 'periodic_axis',
           type: 'string',
           size: 1,  
-          show: "type[0] === 'rotated'",        
+          show: "periodic_kind[0] === 'rotated'",        
           default: [],
         },  
         {
           id: 'periodic_origin',
           type: 'string',
           size: 1,  
-          show: "type[0] === 'rotated'",        
+          show: "periodic_kind[0] === 'rotated'",        
           default: [],
         },   
         {
           id: 'linear_vec',
           type: 'string',
           size: 1,  
-          show: "type[0] === 'linear'",        
+          show: "periodic_kind[0] === 'linear'",        
           default: [],
         },                       
       ],
@@ -1197,7 +1197,7 @@ module.exports = {
           id: 'volume_interpolate_spec',
           type: 'string',
           size: 1,         
-          show: "type[0] === 'interpolate_on'",
+          show: "volume_interpolate[0] === 'interpolate_on'",
           default: [],
         },
         {
@@ -1214,7 +1214,7 @@ module.exports = {
           id: 'scripts_spec',
           type: 'string',
           size: 1,         
-          show: "type[0] === 'scripts_on'",
+          show: "scripts[0] === 'scripts_on'",
           default: [],
         },
         {
@@ -1231,7 +1231,7 @@ module.exports = {
           id: 'variable_name_spec',
           type: 'string',
           size: 1,
-          show: "type[0] === 'vna_on'",                   
+          show: "variable_name_alias[0] === 'vna_on'",                   
           default: [],
         }, 
         {
@@ -1334,7 +1334,7 @@ module.exports = {
           id: 'average_start_time',
           type: 'double',
           size: 1,
-          show: "type[0] === 'yes_rms'",            
+          show: "average_start_time_cycle[0] === 'yes_rms'",            
           default: [1000],
         },                                          
       ],
