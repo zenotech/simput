@@ -1,6 +1,6 @@
 {
   "data": {
-    "timemarcher": [
+    "time_marching": [
       {
         "jobname": "normal",
         "id": 0,
@@ -17,24 +17,24 @@
               "global"
             ]
           },
-          "totaltime": {
-            "id": "timemarch.totaltime",
+          "total_time": {
+            "id": "timemarch.total_time",
             "value": [
               "1"
             ]
           },
-          "timestep": {
-            "id": "timemarch.timestep",
+          "time_step": {
+            "id": "timemarch.time_step",
             "value": [
               "10"
             ]
           },
-          "accuracy": {
-            "id": "timemarch.accuracy",
+          "order": {
+            "id": "timemarch.order",
             "value": []
           },
-          "psuedocycles": {
-            "id": "timemarch.psuedocycles",
+          "start": {
+            "id": "timemarch.start",
             "value": [
               "0"
             ]
@@ -42,7 +42,7 @@
         }
       }
     ],
-    "solverscheme": [
+    "scheme": [
       {
         "solvername": "rk",
         "id": 0,
@@ -59,58 +59,58 @@
               "rk"
             ]
           },
-          "rk_stages": {
-            "id": "solver.rk_stages",
+          "stage": {
+            "id": "solver.stage",
             "value": [
               "one"
             ]
           },
-          "time_scheme": {
-            "id": "solver.time_scheme",
+          "kind": {
+            "id": "solver.kind",
             "value": [
               "local"
             ]
           },
-          "sgs_cycles": {
-            "id": "solver.sgs_cycles",
+          "Number_Of_SGS_Cycles": {
+            "id": "solver.Number_Of_SGS_Cycles",
             "value": [
               "8"
             ]
           },
-          "jacobian_update_freq": {
-            "id": "solver.jacobian_update_freq",
+          "Jacobian_Update_Frequency": {
+            "id": "solver.Jacobian_Update_Frequency",
             "value": [
               "1"
             ]
           },
-          "backward_sweep": {
-            "id": "solver.backward_sweep",
+          "Include_Backward_Sweep": {
+            "id": "solver.Include_Backward_Sweep",
             "value": [
-              "true"
+              "True"
             ]
           },
-          "relaxation": {
-            "id": "solver.relaxation",
+          "Include_Relaxation": {
+            "id": "solver.Include_Relaxation",
             "value": [
-              "true"
+              "True"
             ]
           },
-          "jacobian_epsilon": {
-            "id": "solver.jacobian_epsilon",
+          "Jacobian_Epsilon": {
+            "id": "solver.Jacobian_Epsilon",
             "value": [
               "1e-8"
             ]
           },
-          "rasanov": {
-            "id": "solver.rasanov",
+          "Use_Rusanov_Flux_For_Jacobian": {
+            "id": "solver.Use_Rusanov_Flux_For_Jacobian",
             "value": [
-              "true"
+              "True"
             ]
           },
-          "finite_difference": {
-            "id": "solver.finite_difference",
+          "Finite_Difference_Jacobian": {
+            "id": "solver.Finite_Difference_Jacobian",
             "value": [
-              "true"
+              "True"
             ]
           }                    
         }
@@ -121,26 +121,26 @@
         "cflname": "normal",
         "id": 0,
         "cfl": {
-          "jobname": {
-            "id": "cfl.jobname",
+          "cflname": {
+            "id": "cfl.cflname",
             "value": [
               "normal"
             ]
           },
-          "maxcfl_all": {
-            "id": "cfl.maxcfl_all",
+          "cfl": {
+            "id": "cfl.cfl",
             "value": [
               "2.5"
             ]
           },
-          "maxcfl_transport": {
-            "id": "cfl.maxcfl_transport",
+          "cfl_transport": {
+            "id": "cfl.cfl_transport",
             "value": [
               "1.5"
             ]
           },
-          "maxcfl_coarse": {
-            "id": "cfl.maxcfl_coarse",
+          "cfl_coarse": {
+            "id": "cfl.cfl_coarse",
             "value": [
               "2.0"
             ]
@@ -157,8 +157,8 @@
               "2.0"
             ]
           },
-          "ramp_factor": {
-            "id": "cfl.ramp_factor",
+          "cfl_ramp_factor": {
+            "id": "cfl.cfl_ramp_factor",
             "value": [
               "no"
             ]
@@ -183,10 +183,16 @@
         "equation_name": "normal",
         "id": 0,
         "equation": {
-          "equations": {
+          "equationname": {
             "id": "equation.equation_name",
             "value": [
               "normal"
+            ]
+          },
+          "equations": {
+            "id": "equation.equations",
+            "value": [
+              "euler"
             ]
           },
           "order": {
@@ -204,17 +210,17 @@
           "precondition": {
             "id": "equation.precondition",
             "value": [
-              "true"
+              "True"
             ]
           },
           "linear_gradients": {
             "id": "equation.linear_gradients",
             "value": [
-              "false"
+              "False"
             ]
           },
-          "inviscid_flux_scheme": {
-            "id": "equation.inviscid_flux_scheme",
+          "Inviscid_Flux_Scheme": {
+            "id": "equation.Inviscid_Flux_Scheme",
             "value": [
               "hllc"
             ]
@@ -222,13 +228,13 @@
           "leastsq_gradients": {
             "id": "equation.leastsq_gradients",
             "value": [
-              "false"
+              "False"
             ]
           },
           "model": {
             "id": "equation.model",
             "value": [
-              "sst"
+              "none"
             ]
           },
           "les": {
@@ -246,22 +252,22 @@
           "limit_mut": {
             "id": "equation.limit_mut",
             "value": [
-              "false"
+              "False"
             ]
           },
-          "cdes": {
+          "CDES": {
             "id": "equation.cdes",
             "value": [
               "0.65"
             ]
           },
-          "cdes_kw": {
+          "CDES_KW": {
             "id": "equation.cdes_kw",
             "value": [
               "0.78"
             ]
           },
-          "cdes_keps": {
+          "CDES_KEPS": {
             "id": "equation.cdes_keps",
             "value": [
               "0.61"
@@ -279,7 +285,7 @@
               "3"
             ]
           },
-          "Cdw": {
+          "Cw": {
             "id": "equation.cdw",
             "value": [
               "0.15"
@@ -288,13 +294,13 @@
           "production": {
             "id": "equation.production",
             "value": [
-              "0"
+              "none"
             ]
           },
           "rotation_correction": {
             "id": "equation.rotation_correction",
             "value": [
-              "true"
+              "True"
             ]
           },
           "limit_gradient_k": {
@@ -315,14 +321,14 @@
               "0.06"
             ]
           },
-          "ca3": {
-            "id": "equation.ca3",
+          "ce1": {
+            "id": "equation.ce1",
             "value": [
               "1.0"
             ]
           },
-          "ca4": {
-            "id": "equation.ca4",
+          "ce2": {
+            "id": "equation.ce2",
             "value": [
               "50.0"
             ]
@@ -348,7 +354,7 @@
           "separation_correction": {
             "id": "equation.separation_correction",
             "value": [
-              "true"
+              "True"
             ]
           },
           "c11_stability_parameter": {
@@ -357,32 +363,32 @@
               "0"
             ]
           },
-          "ldg_upwind_parameter": {
-            "id": "equation.ldg_upwind_parameter",
+          "LDG_upwind_parameter": {
+            "id": "equation.LDG_upwind_parameter",
             "value": [
               "0.5"
             ]
           },
-          "shock_sensing": {
-            "id": "equation.shock_sensing",
+          "Shock_Sensing": {
+            "id": "equation.Shock_Sensing",
             "value": [
-              "false"
+              "False"
             ]
           },
-          "shock_sensing_k": {
-            "id": "equation.shock_sensing_k",
-            "value": [
-              "1.0"
-            ]
-          },
-          "shock_sensing_viscosity_scale": {
-            "id": "equation.shock_sensing_viscosity_scale",
+          "Shock_Sensing_k": {
+            "id": "equation.Shock_Sensing_k",
             "value": [
               "1.0"
             ]
           },
-          "shock_sensing_variable": {
-            "id": "equation.shock_sensing_variable",
+          "Shock_Sensing_Viscosity_Scale": {
+            "id": "equation.Shock_Sensing_Viscosity_Scale",
+            "value": [
+              "1.0"
+            ]
+          },
+          "Shock_Sensing_Variable": {
+            "id": "equation.Shock_Sensing_Variable",
             "value": [
               "density"
             ]
@@ -390,13 +396,13 @@
           "inviscid_flow": {
             "id": "equation.inviscid_flow",
             "value": [
-              "false"
+              "False"
             ]
           },
-          "freeze_diff_during_rk": {
-            "id": "equation.freeze_diff_during_rk",
+          "freeze_diffusion_during_rk_stages": {
+            "id": "equation.freeze_diffusion_during_rk_stages",
             "value": [
-              "false"
+              "False"
             ]
           }                                                           
         }
@@ -425,20 +431,20 @@
               "287.0"
             ]
           },
-          "sutherlands_const": {
-            "id": "materials.sutherlands_const",
+          "Sutherlands_const": {
+            "id": "materials.Sutherlands_const",
             "value": [
               "110.4"
             ]
           },
-          "prandtl_no": {
-            "id": "materials.prandtl_no",
+          "Prandtl_No": {
+            "id": "materials.Prandtl_No",
             "value": [
               "0.72"
             ]
           },
-          "turb_prandtl_no": {
-            "id": "materials.turb_prandtl_no",
+          "Turbulent_Prandtl_No": {
+            "id": "materials.Turbulent_Prandtl_No",
             "value": [
               "0.9"
             ]
@@ -457,42 +463,42 @@
               "normal"
             ]
           },
-          "static_temp": {
-            "id": "ics.static_temp",
+          "temperature": {
+            "id": "ics.temperature",
             "value": [
               "293.0"
             ]
           },
-          "static_pressure": {
-            "id": "ics.static_pressure",
+          "pressure": {
+            "id": "ics.pressure",
             "value": [
               "101325.0"
             ]
           },
-          "ic_velocity_vector": {
-            "id": "ics.ic_velocity_vector",
+          "vector": {
+            "id": "ics.vector",
             "value": []
           },
-          "ic_mach": {
-            "id": "ics.ic_mach",
+          "Mach": {
+            "id": "ics.Mach",
             "value": [
               "0.2"
             ]
           },
-          "viscocity_dynamic": {
-            "id": "ics.viscocity_dynamic",
+          "viscocity": {
+            "id": "ics.viscocity",
             "value": [
               "1.83e-5"
             ]
           },
-          "reynolds_no": {
-            "id": "ics.reynolds_no",
+          "Reynolds_No": {
+            "id": "ics.Reynolds_No",
             "value": [
               "5.0e6"
             ]
           },
-          "reference_length": {
-            "id": "ics.reference_length",
+          "Reference_Length": {
+            "id": "ics.Reference_Length",
             "value": [
               "1.0"
             ]
@@ -503,24 +509,37 @@
               "0.01"
             ]
           },
-          "amb_turbulence_intensity": {
-            "id": "ics.0.01",
+          "ambient_turbulence_intensity": {
+            "id": "ics.ambient_turbulence_intensity",
             "value": [
-              "0.72"
+              "0.01"
             ]
           },
-          "eddy_visc_ratio": {
-            "id": "ics.eddy_visc_ratio",
-            "value": [
-              "0.1"
-            ]
-          },
-          "amb_eddy_visc_ratio": {
-            "id": "ics.amb_eddy_visc_ratio",
+          "eddy_viscosity_ratio": {
+            "id": "ics.eddy_viscosity_ratio",
             "value": [
               "0.1"
             ]
           },
+
+          "ambient_eddy_viscosity_ratio": {
+            "id": "ics.ambient_eddy_viscosity_ratio",
+            "value": [
+              "0.1"
+            ]
+          },
+          "profile_abl": {
+            "id": "ics.profile_abl",
+            "value": [
+              "none"
+            ]
+          },
+          "profile_field": {
+            "id": "ics.profile_field",
+            "value": [
+              "none"
+            ]
+          },   
           "abl": {
             "id": "ics.abl",
             "value": [
@@ -533,8 +552,8 @@
               "0.0003"
             ]
           },
-          "friction_vel": {
-            "id": "ics.friction_vel",
+          "friction_velocity": {
+            "id": "ics.friction_velocity",
             "value": [
               "0.4"
             ]
@@ -545,14 +564,14 @@
               "-1.0"
             ]
           },
-          "monin_obukhov_length": {
-            "id": "ics.monin_obukhov_length",
+          "Monin-Obukhov_length": {
+            "id": "ics.Monin-Obukhov_length",
             "value": [
               "-1.0"
             ]
           },
-          "tke": {
-            "id": "ics.tke",
+          "TKE": {
+            "id": "ics.TKE",
             "value": [
               "0.928"
             ]
@@ -563,14 +582,26 @@
               "-0.75"
             ]
           },
+          "field": {
+            "id": "ics.field",
+            "value": [
+              "none"
+            ]
+          },
+          "use_wall_distance": {
+            "id": "ics.use_wall_distance",
+            "value": [
+              "True"
+            ]
+          },
           "total_pressure_ratio": {
             "id": "ics.total_pressure_ratio",
             "value": [
               "1.0"
             ]
           },
-          "total_temp_ratio": {
-            "id": "ics.total_temp_ratio",
+          "total_temperature_ratio": {
+            "id": "ics.total_temperature_ratio",
             "value": [
               "1.0"
             ]
@@ -602,7 +633,7 @@
         "id": 0,
         "bcs": {
           "bc_name": {
-            "id": "bcs.material",
+            "id": "bcs.bc_name",
             "value": [
               "normal"
             ]
@@ -617,66 +648,128 @@
             "id": "bcs.zone",
             "value": []
           },
-          "bc_type": {
-            "id": "bcs.bc_type",
+          "type": {
+            "id": "bcs.type",
             "value": [
               "wall"
             ]
           },
-          "bc_kind": {
-            "id": "bcs.bc_kind",
+          "kind": {
+            "id": "bcs.kind",
             "value": [
-              "slip"
+              "none"
             ]
           },
-          "roughness_type": {
-            "id": "bcs.roughness_type",
+          "roughness": {
+            "id": "bcs.roughness",
             "value": [
-              "height"
+              "none"
             ]
           },
-          "roughness_scalar": {
-            "id": "bcs.roughness_scalar",
+          "scalar": {
+            "id": "bcs.scalar",
             "value": [
               "0.001"
             ]
           },
-          "roughness_field": {
-            "id": "bcs.roughness_field",
+          "specifiy_V": {
+            "id": "bcs.specifiy_V",
+            "value": [
+              "none"
+            ]
+          },
+          "V": {
+            "id": "bcs.V",
+            "value": [
+              "none"
+            ]
+          },
+          "field": {
+            "id": "bcs.field",
             "value": []
           },
-          "bc_velocity_vector": {
-            "id": "bcs.bc_velocity_vector",
+          "vector": {
+            "id": "bcs.vector",
             "value": []
           },
-          "bc_mach": {
-            "id": "bcs.bc_mach",
+          "Mach": {
+            "id": "bcs.Mach",
             "value": [
               "0.20"
             ]
           },
-          "bc_omega": {
-            "id": "bcs.bc_omega",
+          "omega": {
+            "id": "bcs.omega",
             "value": [
               "2.0"
             ]
           },
-          "rotation_axis": {
-            "id": "bcs.rotation_axis",
+          "axis": {
+            "id": "bcs.axis",
             "value": []
           },
-          "rotation_origin": {
-            "id": "bcs.rotation_origin",
+          "origin": {
+            "id": "bcs.origin",
             "value": []
           },
-          "wall_temp_scalar": {
-            "id": "bcs.wall_temp_scalar",
+          "temperature": {
+            "id": "bcs.temperature",
+            "value": []
+          },
+          "temp_scalar": {
+            "id": "bcs.temp_scalar",
             "value": [
               "280.0"
             ]
           },
-          "wall_temp_field": {
-            "id": "bcs.wall_temp_field",
+          "temp_field": {
+            "id": "bcs.temp_field",
+            "value": []
+          },
+          "farfield_kind": {
+            "id": "bcs.farfield_kind",
+            "value": [
+              "riemann"
+            ]
+          },
+          "farfield_ic": {
+            "id": "bcs.farfield_ic",
+            "value": []
+          },
+          "ABL": {
+            "id": "bcs.ABL",
+            "value": []
+          },
+          "roughness_length": {
+            "id": "bcs.roughness_length",
+            "value": [
+              "1.0"
+            ]
+          },
+          "friction_velocity": {
+            "id": "bcs.friction_velocity",
+            "value": []
+          },
+          "surface_layer_height": {
+            "id": "bcs.surface_layer_height",
+            "value": []
+          },
+          "TKE": {
+            "id": "bcs.TKE",
+            "value": []
+          },
+          "z0": {
+            "id": "bcs.z0",
+            "value": [
+              "riemann"
+            ]
+          },
+          "turbulence": {
+            "id": "bcs.turbulence",
+            "value": []
+          },
+          "Monin-Obukhov_length": {
+            "id": "bcs.Monin-Obukhov_length",
             "value": []
           },
           "required_ic": {
@@ -693,24 +786,50 @@
             "id": "bcs.reynolds_tensor",
             "value": []
           },
-          "ref_radius": {
-            "id": "bcs.ref_radius",
+          "reference_radius": {
+            "id": "bcs.reference_radius",
             "value": [
               "1.0"
             ]
           },
-          "periodic_theta": {
-            "id": "bcs.periodic_theta",
+          "condition": {
+            "id": "bcs.condition",
             "value": []
           },
-          "periodic_axis": {
-            "id": "bcs.periodic_axis",
+          "theta": {
+            "id": "bcs.theta",
             "value": []
           },
-          "periodic_origin": {
-            "id": "bcs.periodic_origin",
+          "linear_vector": {
+            "id": "bcs.linear_vector",
             "value": []
-          }                                                 
+          }                                               
+        }
+      }
+    ],
+    "fluidzones": [
+      {
+        "fz": "normal",
+        "id": 0,
+        "fzones": {
+          "fz": {
+            "id": "fzones.fz",
+            "value": [
+              "normal"
+            ]
+          },
+          "type": {
+            "id": "fzones.def",
+            "value": [
+              "none"
+            ]
+          },
+          "def": {
+            "id": "fzones.def",
+            "value": [
+              "none"
+            ]
+          }                   
         }
       }
     ],
@@ -719,8 +838,8 @@
         "output_name": "normal",
         "id": 0,
         "out": {
-          "output_name": {
-            "id": "out.output_name",
+          "write_output": {
+            "id": "out.write_output",
             "value": [
               "normal"
             ]
@@ -745,24 +864,34 @@
             "id": "out.scripts",
             "value": []
           },
+          "variable_name_spec": {
+            "id": "out.variable_name_spec",
+            "value": []
+          },
           "variable_name_alias": {
             "id": "out.variable_name_alias",
             "value": []
           },
-          "volume_data_freq": {
-            "id": "out.volume_data_freq",
+          "frequency": {
+            "id": "out.frequency",
+            "value": [
+              "default"
+            ]
+          },
+          "volume_data": {
+            "id": "out.volume_data",
             "value": [
               "3"
             ]
           },
-          "surface_data_freq": {
-            "id": "out.surface_data_freq",
+          "surface_data": {
+            "id": "out.surface_data",
             "value": [
               "3"
             ]
           },
-          "volume_interpolate_freq": {
-            "id": "out.volume_interpolate_freq",
+          "volume_interpolate_frequency": {
+            "id": "out.volume_interpolate_frequency",
             "value": [
               "3"
             ]
@@ -797,6 +926,10 @@
               "1"
             ]
           },
+          "high_order_surface_spec": {
+            "id": "out.high_order_surface_spec",
+            "value": []
+          },
           "high_order_surface_list": {
             "id": "out.high_order_surface_list",
             "value": []
@@ -804,13 +937,13 @@
           "no_volume_vtk": {
             "id": "out.no_volume_vtk",
             "value": [
-              "false"
+              "False"
             ]
           },
           "calculate_averge_and_rms": {
             "id": "out.calculate_averge_and_rms",
             "value": [
-              "true"
+              "True"
             ]
           },
           "average_start_time_cycle": {
