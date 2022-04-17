@@ -2,19 +2,13 @@
   "data": {
     "time_marching": [
       {
-        "jobname": "normal",
+        "type": "normal",
         "id": 0,
         "timemarch": {
-          "jobname": {
-            "id": "timemarch.jobname",
-            "value": [
-              "normal"
-            ]
-          },
           "type": {
             "id": "timemarch.type",
             "value": [
-              "global"
+              "normal"
             ]
           },
           "total_time": {
@@ -29,6 +23,12 @@
               "10"
             ]
           },
+          "step_spec": {
+            "id": "timemarch.step_spec",
+            "value": [
+              "global"
+            ]
+          },
           "order": {
             "id": "timemarch.order",
             "value": []
@@ -38,143 +38,145 @@
             "value": [
               "0"
             ]
-          }
-        }
-      }
-    ],
-    "scheme": [
-      {
-        "solvername": "rk",
-        "id": 0,
-        "solver": {
-          "jobname": {
-            "id": "solver.jobname",
-            "value": [
-              "normal"
-            ]
           },
-          "type": {
-            "id": "solver.type",
+          "name": {
+            "id": "timemarch.name",
             "value": [
               "rk"
             ]
           },
           "stage": {
-            "id": "solver.stage",
+            "id": "timemarch.stage",
             "value": [
               "one"
             ]
           },
           "kind": {
-            "id": "solver.kind",
+            "id": "timemarch.kind",
             "value": [
               "local"
             ]
           },
           "Number_Of_SGS_Cycles": {
-            "id": "solver.Number_Of_SGS_Cycles",
+            "id": "timemarch.Number_Of_SGS_Cycles",
             "value": [
               "8"
             ]
           },
           "Jacobian_Update_Frequency": {
-            "id": "solver.Jacobian_Update_Frequency",
+            "id": "timemarch.Jacobian_Update_Frequency",
             "value": [
               "1"
             ]
           },
           "Include_Backward_Sweep": {
-            "id": "solver.Include_Backward_Sweep",
+            "id": "timemarch.Include_Backward_Sweep",
             "value": [
               "True"
             ]
           },
           "Include_Relaxation": {
-            "id": "solver.Include_Relaxation",
+            "id": "timemarch.Include_Relaxation",
             "value": [
               "True"
             ]
           },
           "Jacobian_Epsilon": {
-            "id": "solver.Jacobian_Epsilon",
+            "id": "timemarch.Jacobian_Epsilon",
             "value": [
               "1e-8"
             ]
           },
           "Use_Rusanov_Flux_For_Jacobian": {
-            "id": "solver.Use_Rusanov_Flux_For_Jacobian",
+            "id": "timemarch.Use_Rusanov_Flux_For_Jacobian",
             "value": [
               "True"
             ]
           },
           "Finite_Difference_Jacobian": {
-            "id": "solver.Finite_Difference_Jacobian",
+            "id": "timemarch.Finite_Difference_Jacobian",
             "value": [
               "True"
             ]
-          }                    
-        }
-      }
-    ],
-    "cfldata": [
-      {
-        "cflname": "normal",
-        "id": 0,
-        "cfl": {
-          "cflname": {
-            "id": "cfl.cflname",
-            "value": [
-              "normal"
-            ]
           },
-          "cfl": {
-            "id": "cfl.cfl",
+          "cfl_max": {
+            "id": "timemarch.cflmax",
             "value": [
               "2.5"
             ]
           },
           "cfl_transport": {
-            "id": "cfl.cfl_transport",
+            "id": "timemarch.cfl_transport",
             "value": [
               "1.5"
             ]
           },
           "cfl_coarse": {
-            "id": "cfl.cfl_coarse",
+            "id": "timemarch.cfl_coarse",
             "value": [
               "2.0"
             ]
           },
           "multipolycfl_lower": {
-            "id": "cfl.multipolycfl_lower",
+            "id": "timemarch.multipolycfl_lower",
             "value": [
               "2.0"
             ]
           },
           "multipolycfl_upper": {
-            "id": "cfl.multipolycfl_upper",
+            "id": "timemarch.multipolycfl_upper",
             "value": [
               "2.0"
             ]
           },
           "cfl_ramp_factor": {
-            "id": "cfl.cfl_ramp_factor",
+            "id": "timemarch.cfl_ramp_factor",
             "value": [
               "no"
             ]
           },
           "growth": {
-            "id": "cfl.growth",
+            "id": "timemarch.growth",
             "value": [
               "1.05"
             ]
           },
           "initial": {
-            "id": "cfl.initial",
+            "id": "timemarch.initial",
             "value": [
               "0.1"
             ]
-          }                   
+          },
+          "multi_max": {
+            "id": "timemarch.multi_max",
+            "value": [
+              "10"
+            ]
+          },
+          "multigrid_cycles": {
+            "id": "timemarch.multigrid_cycles",
+            "value": [
+              "5000"
+            ]
+          },
+          "prolong_factor": {
+            "id": "timemarch.prolong_factor",
+            "value": [
+              "0.75"
+            ]
+          },
+          "prolong_transport_factor": {
+            "id": "timemarch.prolong_transport_factor",
+            "value": [
+              "0.3"
+            ]
+          },
+          "multipoly": {
+            "id": "timemarch.multipoly",
+            "value": [
+              "True"
+            ]
+          }                    
         }
       }
     ],
@@ -957,5 +959,5 @@
     ]                        
   },
   "hideViews": [],
-  "type": "solver"
+  "type": "timemarch"
 }

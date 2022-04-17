@@ -1,6 +1,5 @@
 module.exports = {
-  order: ['time_marching', 'scheme','cfldata','equations',
-  'materialspec','initialconditions','boundaryconditions','fluidzones','output'],
+  order: ['time_marching','equations','materialspec','initialconditions','boundaryconditions','fluidzones','output'],
   views: {
     time_marching: {
       size: -1,
@@ -8,36 +7,10 @@ module.exports = {
       hooks: [
         {
           type: 'copyParameterToViewName',
-          attribute: 'timemarch.name',
+          attribute: 'timemarch.type',
         },
         {
           type: 'timemarchToExternal',
-        },
-      ],
-    },
-    scheme: {
-      size: -1,
-      attributes: ['solver'],
-      hooks: [
-        {
-          type: 'copyParameterToViewName',
-          attribute: 'solver.name',
-        },
-        {
-          type: 'solverToExternal',
-        },
-      ],
-    },
-    cfldata: {
-      size: -1,
-      attributes: ['cfl'],
-      hooks: [
-        {
-          type: 'copyParameterToViewName',
-          attribute: 'cfl.cflname',
-        },
-        {
-          type: 'cflToExternal',
         },
       ],
     },
@@ -124,38 +97,47 @@ module.exports = {
     timemarch: {
       parameters: [
         {
-          id: 'jobname',
-          label: 'Job Name',
-          type: 'string',
-          size: 1,
-        },
-        {
           id: 'type',
           type: 'enum',
           size: 1,
-          default: 'global',
+          default: 'unsteady',
           domain: {
-            Global: 'global',
-            Dual: 'Dualtime',
+            Unsteady: 'unsteady',
+            Scheme: 'scheme',
+            CFL: 'cfl',
+            Multigrid: 'multigrid',
           },
         },
         {
           id: 'total_time',
           type: 'double',
           size: 1,
+          show: "type[0] === 'unsteady'",
           default: [1.0],
         },
         {
           id: 'time_step',
           type: 'double',
           size: 1,
+          show: "type[0] === 'unsteady'",
           default: [1.0],
+        },
+        {
+          id: 'step_spec',
+          type: 'enum',
+          size: 1,
+          show: "type[0] === 'unsteady'",
+          default: 'global',
+          domain: {
+            Global: 'global',
+            Dual: 'dual',
+          }
         },
         {
           id: 'order',
           type: 'enum',
           size: 1,
-          show: "type[0] === 'Dualtime'",
+          show: "step_spec[0] === 'dual'",
           default: 'second',
           domain: {
             First: 'first',
@@ -166,23 +148,14 @@ module.exports = {
           id: 'start',
           type: 'int',
           size: 1,
+          show: "step_spec[0] === 'dual'",
           default: [3000],
-          show: "type[0] === 'Dualtime'",
-        },
-      ],
-    },
-    solver: {
-      parameters: [
-        {
-          id: 'solvername',
-          label: 'Solver Name',
-          type: 'string',
-          size: 1,
         },
         {
           id: 'name',
           type: 'enum',
           size: 1,
+          show: "type[0] === 'scheme'",
           default: 'euler',
           domain: {
             Euler: 'euler',
@@ -278,45 +251,40 @@ module.exports = {
             True: 'True',
             False: 'False',
           }
-        },                                             
-      ],
-    },
-    cfl: {
-      parameters: [
-        {
-          id: 'cflname',
-          label: 'CFL Settings Name',
-          type: 'string',
-          size: 1,
         },
         {
-          id: 'cfl',
+          id: 'cfl_max',
           type: 'double',
-          size: 1,         
+          size: 1, 
+          show: "type[0] === 'cfl'",        
           default: [2.5],
         },
         {
           id: 'cfl_transport',
           type: 'double',
-          size: 1,         
+          size: 1,        
+          show: "type[0] === 'cfl'",  
           default: [1.5],
         },
         {
           id: 'cfl_coarse',
           type: 'double',
-          size: 1,         
+          size: 1,     
+          show: "type[0] === 'cfl'",     
           default: [2.0],
         },  
         {
           id: 'multipolycfl',
           type: 'double',
-          size: 2,         
+          size: 2,        
+          show: "type[0] === 'cfl'",  
           default: [2.0,2.0],
         },
         {
           id: 'cfl_ramp_factor',
           type: 'enum',
           size: 1,
+          show: "type[0] === 'cfl'", 
           default: 'no',
           domain: {
             Yes: 'yes',
@@ -336,7 +304,46 @@ module.exports = {
           size: 1,
           show: "cfl_ramp_factor[0] === 'yes'",                   
           default: [0.1],
-        },                                                    
+        },   
+        {
+          id: 'multi_max',
+          type: 'double',
+          size: 1,
+          show: "type[0] === 'multigrid'",                   
+          default: [10],
+        },
+        {
+          id: 'multigrid_cycles',
+          type: 'double',
+          size: 1,
+          show: "type[0] === 'multigrid'",                   
+          default: [5000],
+        },     
+        {
+          id: 'prolong_factor',
+          type: 'double',
+          size: 1,
+          show: "type[0] === 'multigrid'",                   
+          default: [0.75],
+        },
+        {
+          id: 'prolong_transport_factor',
+          type: 'double',
+          size: 1,
+          show: "type[0] === 'multigrid'",                   
+          default: [0.3],
+        },  
+        {
+          id: 'multipoly',
+          type: 'enum',
+          size: 1,
+          show: "type[0] === 'multigrid'", 
+          default: 'True',
+          domain: {
+            True: 'True',
+            False: 'False',
+          }
+        },                                             
       ],
     },
     equation: {

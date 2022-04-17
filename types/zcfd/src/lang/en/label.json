@@ -1,8 +1,6 @@
 {
   "views": {
     "time_marching": "Time Marching",
-    "scheme": "Solver Scheme",
-    "cfldata": "CFL Settings",
     "equations": "Equations",
     "materialspec": "Material Specifications",
     "initialconditions": "Initial Conditions",
@@ -14,17 +12,13 @@
     "timemarch": {
       "title": "Time Marcher",
       "parameters": {
-        "type": "Type",
+        "type": "Choose Type of Specification",
         "total_time": "Total Time (seconds)",
         "time_step": "Time Step (seconds)",
+        "step_spec": "Choose global time-stepping or dual time-stepping",
         "order": "Dual time step time accuracy",
-        "start": "Number of Psuedo Time (Steady) Cycles - to run before starting dual time_step time accurate simulation"
-      }
-    },
-    "solver": {
-      "title": "Solver Scheme",
-      "parameters": {
-        "name": "Type of Solver",
+        "start": "Number of Psuedo Time (Steady) Cycles - to run before starting dual time_step time accurate simulation",
+        "name": "Solver Type",
         "stage": "Number of Runge-Kutta Stages",
         "kind": "Time Stepping Scheme",
         "Number_Of_SGS_Cycles": "Number of SGS Cycles",
@@ -33,19 +27,19 @@
         "Include_Relaxation": "Include Include_Relaxation",
         "Jacobian_Epsilon": "Jacobian Epsilon",
         "Use_Rusanov_Flux_For_Jacobian": "Use Rasanov Flux for Jacobian",
-        "Finite_Difference_Jacobian": "Finite Difference Jacobian"
-      }
-    },
-    "cfl": {
-      "title": "CFL Setting",
-      "parameters": {
-        "cfl": "Default Max CFL Number for all Equations",
+        "Finite_Difference_Jacobian": "Finite Difference Jacobian",
+        "cfl_max": "Default Max CFL Number for all Equations",
         "cfl_transport": "Override Max CFL Number for Transported Quantities",
         "cfl_coarse": "Override Max CFL Number for Coarse Meshes",
         "multipolycfl": "Control of CFL for Polynomial Multigrid",
         "cfl_ramp_factor": "Ramp CFL (Yes or No)",
         "growth": "CFL = cfl_ini * growth ^ cycle",
-        "initial": "Min CFL"
+        "initial": "Min CFL",
+        "multi_max": "Maximum number of meshes (including fine mesh)",
+        "multigrid_cycles": "Number of multigrid cycles before solving on fine mesh only",
+        "prolong_factor": "Prolongation factor",
+        "prolong_transport_factor": "Prolongation factor for transported quantities",
+        "multipoly": "Switch on polynomial multigrid"
       }
     },
     "equation": {

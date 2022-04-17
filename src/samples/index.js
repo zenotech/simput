@@ -61,7 +61,7 @@ export default [
   {
     label: 'zCFD Visualiser',
     image: Images.zCFD,
-    description: 'Application to view geometry and intuitively apply initial/boundary conditions.',
+    description: 'Specify zCFD settings, view geometry and intuitively apply initial/boundary conditions.',
     acknowledgement: 'Zenotech',
     model: {
       type: 'zcfd',
