@@ -185,7 +185,7 @@
         "equation_name": "normal",
         "id": 0,
         "equation": {
-          "equationname": {
+          "equation_name": {
             "id": "equation.equation_name",
             "value": [
               "normal"
@@ -357,6 +357,12 @@
             "id": "equation.separation_correction",
             "value": [
               "True"
+            ]
+          },
+          "spatial_poly_order": {
+            "id": "equation.spatial_poly_order",
+            "value": [
+              "2"
             ]
           },
           "c11_stability_parameter": {

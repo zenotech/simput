@@ -145,6 +145,13 @@ module.exports = {
           }
         },
         {
+          id: 'cycles',
+          type: 'double',
+          size: 1,
+          show: "step_spec[0] === 'global_timestepping'",                   
+          default: [5000],
+        },   
+        {
           id: 'start',
           type: 'int',
           size: 1,
@@ -168,7 +175,7 @@ module.exports = {
           type: 'enum',
           size: 1,
           show: "name[0] === 'runge_kutta'",
-          default: 'one',
+          default: '5',
           domain: {
             One: '1',
             Four: '4',
@@ -181,7 +188,7 @@ module.exports = {
           type: 'enum',
           size: 1,
           show: "name[0] === 'runge_kutta'",
-          default: 'local',
+          default: 'local_timestepping',
           domain: {
             Local: 'local_timestepping',
             Dual: 'global_timestepping',
@@ -306,6 +313,13 @@ module.exports = {
           default: [0.1],
         },   
         {
+          id: 'cycles',
+          type: 'double',
+          size: 1,
+          show: "kind[0] === 'global_timestepping'",                   
+          default: [5000],
+        },   
+        {
           id: 'multi_max',
           type: 'double',
           size: 1,
@@ -338,7 +352,7 @@ module.exports = {
           type: 'enum',
           size: 1,
           show: "type[0] === 'multigrid'", 
-          default: 'True',
+          default: 'False',
           domain: {
             True: 'True',
             False: 'False',
@@ -349,7 +363,7 @@ module.exports = {
     equation: {
       parameters: [
         {
-          id: 'equationname',
+          id: 'equation_name',
           label: 'Equation Name',
           type: 'string',
           size: 1,
@@ -423,7 +437,7 @@ module.exports = {
           id: 'leastsq_gradients',
           type: 'enum',
           size: 1,
-          show: "equations[0] === 'RANS'",     
+          show: "equations[0] === 'RANS' || equations[0] === 'DGRANS'",
           default: 'False',
           domain: {
             True: 'True',
@@ -434,54 +448,10 @@ module.exports = {
           id: 'turbulence',
           type: 'enum',
           size: 1,
-          show: "equations[0] === 'RANS'",   
+          show: "equations[0] === 'RANS' || equations[0] === 'DGRANS' || equations[0] === 'LES' || equations[0] === 'DGLES'",
           default: 'default',
           domain: {
-            Specify: 'specify_RANS',
-            Default: 'default',   
-          }
-        },
-        {
-          id: 'leastsq_gradients',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGRANS'",     
-          default: 'False',
-          domain: {
-            True: 'True',
-            False: 'False',   
-          }
-        },
-        {
-          id: 'turbulence',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGRANS'",   
-          default: 'default',
-          domain: {
-            Specify: 'specify_RANS',
-            Default: 'default',   
-          }
-        },
-        {
-          id: 'turbulence',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'LES'",   
-          default: 'default',
-          domain: {
-            Specify: 'specify_LES',
-            Default: 'default',   
-          }
-        },
-        {
-          id: 'turbulence',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGLES'",   
-          default: 'default',
-          domain: {
-            Specify: 'specify_LES',
+            Specify: 'specify',
             Default: 'default',   
           }
         },
@@ -489,19 +459,20 @@ module.exports = {
           id: 'model',
           type: 'enum',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'",   
-          default: 'sst',
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'",   
+          default: 'default',
           domain: {
             SST: 'sst',
             SA_NEG: 'sa-neg',
             SST_TRANSITION: 'sst-transition',
+            Default: 'default',
           }
         }, 
         {
-          id: 'les',
+          id: 'les_RANS',
           type: 'enum',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'", 
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'", 
           default: 'none',
           domain: {
             None: 'none',
@@ -514,7 +485,7 @@ module.exports = {
           id: 'les',
           type: 'enum',
           size: 1,
-          show: "turbulence[0] === 'specify_LES'", 
+          show: "turbulence[0] === 'specify' && equations[0] === 'LES'", 
           default: 'none',
           domain: {
             None: 'none',
@@ -525,14 +496,14 @@ module.exports = {
           id: 'betastar',
           type: 'double',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'",                   
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'",                 
           default: [0.09],
         },
         {
           id: 'limit_mut',
           type: 'enum',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'",     
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'",    
           default: 'False',
           domain: {
             True: 'True',
@@ -543,42 +514,42 @@ module.exports = {
           id: 'CDES',
           type: 'double',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'",                   
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'",                    
           default: [0.65],
         },      
         {
           id: 'CDES_KW',
           type: 'double',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'",                   
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'",                 
           default: [0.78],
         }, 
         {
           id: 'CDES_KEPS',
           type: 'double',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'",                   
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'",                 
           default: [0.61],
         },    
         {
           id: 'Cd1',
           type: 'double',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'",                   
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'",                  
           default: [20.0],
         }, 
         {
           id: 'Cd2',
           type: 'double',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'",                   
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'",                   
           default: [3],
         }, 
         {
           id: 'Cw',
           type: 'double',
           size: 1,
-          show: "turbulence[0] === 'specify_RANS'",                   
+          show: "turbulence[0] === 'specify' && equations[0] === 'RANS'",                   
           default: [0.15],
         },
         {
@@ -672,11 +643,11 @@ module.exports = {
           }
         }, 
         {
-          id: 'order',
+          id: 'spatial_poly_order',
           type: 'enum',
           size: 1,
-          show: "equations[0] === 'DGRANS'",             
-          default: 'True',
+          show: "equations[0] === 'DGRANS' || equations[0] === 'DGLES' || equations[0] === 'DGviscous' || equations[0] === 'DGCAA'",           
+          default: '2',
           domain: {
             Zero: '0',
             One: '1',        
@@ -688,21 +659,21 @@ module.exports = {
           id: 'c11_stability_parameter',
           type: 'double',
           size: 1,
-          show: "equations[0] === 'DGRANS'",                   
+          show: "equations[0] === 'DGRANS' || equations[0] === 'DGLES' || equations[0] === 'DGviscous' || equations[0] === 'DGCAA'",                           
           default: [0.0],
         }, 
         {
           id: 'LDG_upwind_parameter',
           type: 'double',
           size: 1,
-          show: "equations[0] === 'DGRANS'",                   
+          show: "equations[0] === 'DGRANS' || equations[0] === 'DGLES' || equations[0] === 'DGviscous' || equations[0] === 'DGCAA'",                          
           default: [0.5],
         }, 
         {
           id: 'Shock_Sensing',
           type: 'enum',
           size: 1,
-          show: "equations[0] === 'DGRANS'",                   
+          show: "equations[0] === 'DGRANS' || equations[0] === 'DGLES' || equations[0] === 'DGviscous' || equations[0] === 'DGCAA'",                            
           default: 'False',
           domain: {
             True: 'True',
@@ -713,216 +684,21 @@ module.exports = {
           id: 'Shock_Sensing_k',
           type: 'double',
           size: 1,
-          show: "equations[0] === 'DGRANS'",                   
+          show: "equations[0] === 'DGRANS' || equations[0] === 'DGLES' || equations[0] === 'DGviscous' || equations[0] === 'DGCAA'",                           
           default: [1.0],
         }, 
         {
           id: 'Shock_Sensing_Viscosity_Scale',
           type: 'double',
           size: 1,
-          show: "equations[0] === 'DGRANS'",                   
+          show: "equations[0] === 'DGRANS' || equations[0] === 'DGLES' || equations[0] === 'DGviscous' || equations[0] === 'DGCAA'",                             
           default: [1.0],
         }, 
         {
           id: 'Shock_Sensing_Variable',
           type: 'enum',
           size: 1,
-          show: "equations[0] === 'DGRANS'",                   
-          default: 'density',
-          domain: {
-            Density: 'density',
-            Temperature: 'temperature',  
-            Mach: 'mach',
-            Turbulence: 'turbulence',  
-          }
-        },  
-        {
-          id: 'order',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGviscous'",             
-          default: 'True',
-          domain: {
-            Zero: '0',
-            One: '1',        
-            Two: '2',
-            Three: '3',   
-          }
-        }, 
-        {
-          id: 'c11_stability_parameter',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGviscous'",                   
-          default: [0.0],
-        }, 
-        {
-          id: 'LDG_upwind_parameter',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGviscous'",                   
-          default: [0.5],
-        }, 
-        {
-          id: 'Shock_Sensing',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGviscous'",                   
-          default: 'False',
-          domain: {
-            True: 'True',
-            False: 'False',  
-          }
-        }, 
-        {
-          id: 'Shock_Sensing_k',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGviscous'",                   
-          default: [1.0],
-        }, 
-        {
-          id: 'Shock_Sensing_Viscosity_Scale',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGviscous'",                   
-          default: [1.0],
-        }, 
-        {
-          id: 'Shock_Sensing_Variable',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGviscous'",                   
-          default: 'density',
-          domain: {
-            Density: 'density',
-            Temperature: 'temperature',  
-            Mach: 'mach',
-            Turbulence: 'turbulence',  
-          }
-        },     
-        {
-          id: 'order',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGLES'",             
-          default: 'True',
-          domain: {
-            Zero: '0',
-            One: '1',        
-            Two: '2',
-            Three: '3',   
-          }
-        }, 
-        {
-          id: 'c11_stability_parameter',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGLES'",                   
-          default: [0.0],
-        }, 
-        {
-          id: 'LDG_upwind_parameter',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGLES'",                   
-          default: [0.5],
-        }, 
-        {
-          id: 'Shock_Sensing',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGLES'",                   
-          default: 'False',
-          domain: {
-            True: 'True',
-            False: 'False',  
-          }
-        }, 
-        {
-          id: 'Shock_Sensing_k',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGLES'",                   
-          default: [1.0],
-        }, 
-        {
-          id: 'Shock_Sensing_Viscosity_Scale',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGLES'",                   
-          default: [1.0],
-        }, 
-        {
-          id: 'Shock_Sensing_Variable',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGLES'",                   
-          default: 'density',
-          domain: {
-            Density: 'density',
-            Temperature: 'temperature',  
-            Mach: 'mach',
-            Turbulence: 'turbulence',  
-          }
-        },  
-        {
-          id: 'order',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGCAA'",             
-          default: 'True',
-          domain: {
-            Zero: '0',
-            One: '1',        
-            Two: '2',
-            Three: '3',   
-          }
-        }, 
-        {
-          id: 'c11_stability_parameter',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGCAA'",                   
-          default: [0.0],
-        }, 
-        {
-          id: 'LDG_upwind_parameter',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGCAA'",                   
-          default: [0.5],
-        }, 
-        {
-          id: 'Shock_Sensing',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGCAA'",                   
-          default: 'False',
-          domain: {
-            True: 'True',
-            False: 'False',  
-          }
-        }, 
-        {
-          id: 'Shock_Sensing_k',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGCAA'",                   
-          default: [1.0],
-        }, 
-        {
-          id: 'Shock_Sensing_Viscosity_Scale',
-          type: 'double',
-          size: 1,
-          show: "equations[0] === 'DGCAA'",                   
-          default: [1.0],
-        }, 
-        {
-          id: 'Shock_Sensing_Variable',
-          type: 'enum',
-          size: 1,
-          show: "equations[0] === 'DGCAA'",                   
+          show: "equations[0] === 'DGRANS' || equations[0] === 'DGLES' || equations[0] === 'DGviscous' || equations[0] === 'DGCAA'",                            
           default: 'density',
           domain: {
             Density: 'density',
@@ -1467,7 +1243,7 @@ module.exports = {
           id: 'reference_radius',
           type: 'double',
           size: 1,  
-          show: "outflow_kind[0] === 'radial_pressure_grad'",        
+          show: "kind[0] === 'radial_pressure_grad'",        
           default: [1.0],
         },    
         {
